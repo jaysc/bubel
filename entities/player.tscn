@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dygq4frdaj3gk"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ncunx"]
-[ext_resource type="Texture2D" uid="uid://cxgmwlytm0y0k" path="res://icon.svg" id="2_1n7f4"]
+[ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="2_g1p33"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t87km"]
 size = Vector2(127, 128)
@@ -10,7 +10,8 @@ size = Vector2(127, 128)
 script = ExtResource("1_ncunx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_1n7f4")
+texture = ExtResource("2_g1p33")
+region_rect = Rect2(-10, -7, 19, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
