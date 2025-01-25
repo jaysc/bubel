@@ -7,6 +7,7 @@ var DECELERATION = 2000
 var dash_time = 0.0
 var DASH_DURATION = 0.2  # ダッシュが続く時間 (秒)
 
+
 func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	var direction = input_vector.normalized()
@@ -19,6 +20,7 @@ func _physics_process(delta: float) -> void:
 	# ダッシュ時間のカウントダウン
 	if dash_time > 0:
 		dash_time -= delta
+		
 
 	# 今回のフレームでの目標速度
 	var target_speed = MAX_SPEED
@@ -32,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, DECELERATION * delta)
 
-	 move_and_slide()
+	move_and_slide()
 
 #var speed := 400
 
