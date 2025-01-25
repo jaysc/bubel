@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://drthk4q88d178" path="res://assets/misc/Bubbles.png" id="1_tw3rf"]
 [ext_resource type="PackedScene" uid="uid://1xdtpgp7jtnp" path="res://particles/bubble_pop.tscn" id="2_bdejy"]
+[ext_resource type="Script" path="res://scripts/bubble_object.gd" id="1_v3f6s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxeif"]
 atlas = ExtResource("1_tw3rf")
@@ -85,6 +86,8 @@ animations = [{
 radius = 19.0
 
 [node name="Bubble9" type="Area2D"]
+script = ExtResource("1_v3f6s")
+SIZE = 9
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjn18")

@@ -1,14 +1,7 @@
 extends Area2D
 
-@export var health := 100;
-@export var group: Constants.TeamEnum
-
-signal Damage_taken(new_health: float)
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_to_group(str(group))
-	var guards = get_tree().get_nodes_in_group(str(group))
 	pass # Replace with function body.
 
 
@@ -18,8 +11,12 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print('ENTERED')
-	health -= 10
-	
-	Damage_taken.emit(health)
-	pass # Replace with function body.
+	var target_bubble_size = area.get_parent().get("SIZE")
+	if target_bubble_size:
+		print(target_bubble_size)
+		if target_bubble_size > get_parent().get("SIZE"):
+			print('bubble hit size')
+			get_parent().queue_free()
+		else:
+			pass
+			#handle shrink

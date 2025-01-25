@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=8 format=3 uid="uid://dhui6gl33rhk0"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_64tm4"]
 [ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
 [ext_resource type="PackedScene" uid="uid://d128vikrqbbel" path="res://entities/goal.tscn" id="2_1u235"]
 [ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="2_2bg1g"]
-[ext_resource type="PackedScene" uid="uid://dygq4frdaj3gk" path="res://entities/player.tscn" id="3_s7uts"]
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
 [ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
+[ext_resource type="LabelSettings" uid="uid://bfjn5sg5umxlv" path="res://entities/UI/label_default.tres" id="7_yryhk"]
 
 [node name="Main" type="Node2D"]
 
@@ -27,3 +28,93 @@ position = Vector2(-291, -37)
 
 [node name="Player2" parent="." instance=ExtResource("5_yptyk")]
 position = Vector2(338, -21)
+
+[node name="GameManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_64tm4")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameManager"]
+layout_mode = 1
+offset_left = -512.0
+offset_top = 273.0
+offset_right = -234.0
+offset_bottom = 350.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameManager/MarginContainer"]
+layout_mode = 2
+
+[node name="Player 1" type="Label" parent="GameManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player 1"
+label_settings = ExtResource("7_yryhk")
+
+[node name="Player 1 Health" type="HBoxContainer" parent="GameManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Goal Health" type="Label" parent="GameManager/MarginContainer/VBoxContainer/Player 1 Health"]
+layout_mode = 2
+text = "Goal health:"
+label_settings = ExtResource("7_yryhk")
+
+[node name="Player 1 Health" type="Label" parent="GameManager/MarginContainer/VBoxContainer/Player 1 Health"]
+layout_mode = 2
+label_settings = ExtResource("7_yryhk")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GameManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Stun Percentage" type="Label" parent="GameManager/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Stun percentage:"
+label_settings = ExtResource("7_yryhk")
+
+[node name="Player 1 Stun" type="Label" parent="GameManager/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+label_settings = ExtResource("7_yryhk")
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameManager"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 277.0
+offset_right = 507.0
+offset_bottom = 354.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="GameManager/MarginContainer2"]
+layout_mode = 2
+
+[node name="Player 2" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Player 2"
+label_settings = ExtResource("7_yryhk")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameManager/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "Goal health:"
+label_settings = ExtResource("7_yryhk")
+
+[node name="Player 2 Health" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+label_settings = ExtResource("7_yryhk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameManager/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Stun Percentage" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Stun percentage:"
+label_settings = ExtResource("7_yryhk")
+
+[node name="Player 2 Stun" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+label_settings = ExtResource("7_yryhk")
+
+[connection signal="Damage_taken" from="player1Goal" to="GameManager" method="_on_player_1_goal_damage_taken"]
+[connection signal="Damage_taken" from="player2Goal" to="GameManager" method="_on_player_2_goal_damage_taken"]
+[connection signal="on_player_stun" from="Player" to="GameManager" method="_on_player_on_player_stun"]
+[connection signal="on_player_stun" from="Player2" to="GameManager" method="_on_player_2_on_player_stun"]
