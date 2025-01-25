@@ -83,7 +83,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_46y1b"]
 radius = 14.0
 
-[node name="Bubble6" type="RigidBody2D"]
+[node name="Bubble7" type="RigidBody2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjn18")

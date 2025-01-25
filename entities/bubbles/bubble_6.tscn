@@ -81,13 +81,14 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46y1b"]
+radius = 12.0
 
-[node name="Bubble5" type="RigidBody2D"]
+[node name="Bubble6" type="RigidBody2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjn18")
 animation = &"bubbles"
-frame = 4
+frame = 5
 speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
