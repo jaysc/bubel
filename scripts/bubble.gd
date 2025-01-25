@@ -18,7 +18,7 @@ const BUBBLE_10_ENTITY = preload("res://entities/bubbles/bubble_10.tscn")
 
 @export var Direction:= Vector2(0,0)
 
-var isShooted = false
+@export var isShooted = false
 
 var CurrentBubbleObject: Node
 
@@ -36,7 +36,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if !isShooted && CurrentBubbleObject != null:
+		var spriteNode = get_child(0).get_node("Sprite2D")
+		if spriteNode != null:
+			var chargingSize = SIZE
+			if (chargingSize >= 100):
+				chargingSize = 100
+			spriteNode.frame = ceil(chargingSize/10)
 	ActiveTime += delta
+	if SIZE > 100 && isShooted: #2.pop the bubble
+		queue_free()
+	if SIZE > 100 && !isShooted: #1. fource shoot the bubble and then pop it next frame
+		Shoot()
 	if isShooted:
 		var sinedDirection := modifyBubbleDirection()
 		position += (delta * Speed * sinedDirection)

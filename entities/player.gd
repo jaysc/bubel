@@ -49,9 +49,13 @@ func _process(delta: float) -> void:
 		get_tree().current_scene.add_child(bubbleRoot)
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
-	if(Input.is_action_just_released("Attack")):
+	if(Input.is_action_just_released("Attack") && bubbleRoot != null):
 		bubbleRoot.Direction = shootDirection
 		bubbleRoot.Shoot()
+		isChargingBubble = false
+		bubbleRoot = null
+	if bubbleRoot != null && bubbleRoot.isShooted:
+		bubbleRoot.Direction = shootDirection
 		isChargingBubble = false
 		bubbleRoot = null
 		
@@ -63,5 +67,5 @@ func _process(delta: float) -> void:
 			shootDirection = Vector2(1,0)
 		else:
 			shootDirection = inputVector
-		#bubbleRoot.SIZE += delta * 100
-		#bubbleRoot.Speed -= delta / 1
+		bubbleRoot.SIZE += delta * 50
+		bubbleRoot.Speed -= delta / 100
