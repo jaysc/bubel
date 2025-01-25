@@ -60,5 +60,6 @@ func _process(delta: float) -> void:
 		
 	
 	if isChargingBubble:
-		bubbleRoot.SIZE += delta * 100
+		bubbleRoot.position = position + Vector2(50,0)
+		#bubbleRoot.SIZE += delta * 100
 		#bubbleRoot.Speed -= delta / 1
