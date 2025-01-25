@@ -32,8 +32,36 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position = position + (delta * Speed * Direction)
 	pass
+	
+func getSize(size: float) -> PackedScene:
+	if size <= 10:
+		return BUBBLE_1_ENTITY
+	elif size <= 20:
+		return BUBBLE_2_ENTITY
+	elif size <= 30:
+		return BUBBLE_3_ENTITY
+	elif size <= 40:
+		return BUBBLE_4_ENTITY
+	elif size <= 50:
+		return BUBBLE_5_ENTITY
+	elif size <= 60:
+		return BUBBLE_6_ENTITY
+	elif size <= 70:
+		return BUBBLE_7_ENTITY
+	elif size <= 80:
+		return BUBBLE_8_ENTITY
+	elif size <= 90:
+		return BUBBLE_9_ENTITY
+	elif size <= 100:
+		return BUBBLE_10_ENTITY
+	
+	return BUBBLE_1_ENTITY
 
-func getSize(size: float) -> void:
-	var newBubble = BUBBLE_8_ENTITY.instantiate()
+func createBubbleObject(size: float) -> void:
+	var newBubble = getSize(size).instantiate()
+	
+	if CurrentBubbleObject:
+		CurrentBubbleObject.queue_free()
+
 	CurrentBubbleObject = newBubble
 	add_child(newBubble)
