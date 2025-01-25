@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=2 format=3 uid="uid://dhui6gl33rhk0"]
+
+[ext_resource type="PackedScene" uid="uid://dy0genbakeq0i" path="res://entities/bubble.tscn" id="1_b8e3r"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Bubble" parent="." instance=ExtResource("1_b8e3r")]

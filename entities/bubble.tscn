@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy0genbakeq0i"]
+
+[ext_resource type="Script" path="res://scripts/bubble.gd" id="1_0atnr"]
+[ext_resource type="Texture2D" uid="uid://cxgmwlytm0y0k" path="res://icon.svg" id="2_xniuj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35b3y"]
+
+[node name="Bubble" type="Node2D"]
+script = ExtResource("1_0atnr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_35b3y")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_xniuj")
