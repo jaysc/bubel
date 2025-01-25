@@ -12,9 +12,6 @@ func _ready() -> void:
 	
 	$"MarginContainer/VBoxContainer/HBoxContainer3/Player 1 Stun".text = str(Player_1_Stun_Percentage)
 	$"MarginContainer2/VBoxContainer2/HBoxContainer/Player 2 Stun".text = str(Player_2_Stun_Percentage)
-	
-	$player
-
 
 func _on_player_1_goal_damage_taken(health: float) -> void:
 	Player_1_Goal_Health = health

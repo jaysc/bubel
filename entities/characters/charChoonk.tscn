@@ -24,3 +24,6 @@ script = ExtResource("4_5txpb")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 11)
 shape = ExtResource("3_kqxgs")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
