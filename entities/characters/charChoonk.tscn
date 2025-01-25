@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://chabsxkyhnda5"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_qpn74"]
+[ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="2_52ps3"]
+[ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_kqxgs"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_qpn74")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("2_52ps3")
+region_rect = Rect2(-10, -7, 19, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+shape = ExtResource("3_kqxgs")

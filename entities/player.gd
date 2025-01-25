@@ -4,10 +4,10 @@ extends CharacterBody2D
 #Speed Controller
 var MAX_SPEED = 400
 var DASH_SPEED = 600    
-var ACCELERATION = 2000
-var DECELERATION = 2000
+var ACCELERATION = 200000
+var DECELERATION = 200000
 var dash_time = 0.0
-var DASH_DURATION = 0.3
+var DASH_DURATION = 0.1
 
 
 #Bubble Manager
@@ -22,14 +22,12 @@ var bubbleRoot
 func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	var direction = input_vector.normalized()
-
 	if Input.is_action_just_pressed("Dash"):
-		
+
 		dash_time = DASH_DURATION
 
 	if dash_time > 0:
 		dash_time -= delta
-		
 
 	var target_speed = MAX_SPEED
 	if dash_time > 0:

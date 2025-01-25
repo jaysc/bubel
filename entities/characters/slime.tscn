@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0vsw10meym28"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_j1hbl"]
+[ext_resource type="Texture2D" uid="uid://ctp32grhppb4q" path="res://assets/characters/CharSlimelordz.png" id="2_vucv2"]
+[ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_mc2wx"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_j1hbl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_vucv2")
+region_rect = Rect2(-10, -7, 19, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+shape = ExtResource("3_mc2wx")
