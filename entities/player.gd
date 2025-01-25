@@ -19,6 +19,8 @@ var shootDirection
 @export var Stun_Percentage = 0
 @export var Stun_Timer = 0
 
+signal on_player_stun(stun_percentage: float)
+
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
 	if Stun_Timer > 0:
@@ -51,6 +53,7 @@ func hit(damage: float) -> void:
 	Stun_Percentage = clamp( Stun_Percentage + damage, 0, 300);
 	if Stun_Timer <= 0:
 		Stun_Timer = Stun_Percentage
+	on_player_stun.emit(Stun_Percentage)
 
 # Process manages player's Command
 func _process(delta: float) -> void:
