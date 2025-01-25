@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://uujibs1rmqan"]
+[gd_scene load_steps=15 format=3 uid="uid://uujibs1rmqan"]
 
 [ext_resource type="Texture2D" uid="uid://drthk4q88d178" path="res://assets/misc/Bubbles.png" id="1_3cy3a"]
+[ext_resource type="PackedScene" uid="uid://1xdtpgp7jtnp" path="res://particles/bubble_pop.tscn" id="2_3cubi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxeif"]
 atlas = ExtResource("1_3cy3a")
@@ -74,6 +75,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oop14")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": true,
 "name": &"bubbles",
@@ -92,3 +96,5 @@ speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1bas2")
+
+[node name="BubblePop" parent="." instance=ExtResource("2_3cubi")]

@@ -79,4 +79,4 @@ func _process(delta: float) -> void:
 		else:
 			shootDirection = inputVector
 		bubbleRoot.SIZE += delta * 50
-		bubbleRoot.Speed -= delta / 100
+		bubbleRoot.Speed -= delta / 1000

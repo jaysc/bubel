@@ -14,7 +14,7 @@ const BUBBLE_10_ENTITY = preload("res://entities/bubbles/bubble_10.tscn")
 const KILL_MAX_X = 1000
 const KILL_MAX_Y = 500
 
-@export var Speed := 200
+@export var Speed := 300
 
 ## Size is split into 10 discreet integers
 @export var SIZE = 1
@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 			spriteNode.frame = ceil(chargingSize/10)
 	ActiveTime += delta
 	if SIZE > 100 && isShooted: #2.pop the bubble
-		queue_free()
+		destroyBubble()
 	if SIZE > 100 && !isShooted: #1. fource shoot the bubble and then pop it next frame
 		Shoot()
 	if isShooted:
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 	pass
 	
 	if position.x > KILL_MAX_X || position.x < -KILL_MAX_Y || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
-		queue_free()
+		destroyBubble()
 		
 	
 func modifyBubbleDirection() -> Vector2:
@@ -101,6 +101,11 @@ func createBubbleObject(size: float) -> void:
 	CurrentBubbleObject = newBubble
 	add_child(newBubble)
 
-
 func Shoot() -> void:
 	isShooted = true
+
+func destroyBubble() -> void:
+	get_child(0).get_node("BubblePop").get_node("CPUParticles2D").emitting = true
+	get_child(0).get_node("Sprite2D").frame = 10;
+	await get_tree().create_timer(0.2).timeout 
+	queue_free()

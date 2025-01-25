@@ -14,4 +14,5 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	print('HIT')
 	get_parent().hit(10)
+	area.get_parent().destroyBubble()
 	pass # Replace with function body.
