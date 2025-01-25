@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=6 format=3 uid="uid://dhui6gl33rhk0"]
 
 [ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
 [ext_resource type="PackedScene" uid="uid://d128vikrqbbel" path="res://entities/goal.tscn" id="2_1u235"]
 [ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="2_2bg1g"]
 [ext_resource type="PackedScene" uid="uid://dygq4frdaj3gk" path="res://entities/player.tscn" id="3_s7uts"]
+[ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
+[ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,5 +22,8 @@ group = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("3_s7uts")]
-position = Vector2(-306, -93)
+[node name="Player" parent="." instance=ExtResource("4_hr3xq")]
+position = Vector2(-291, -37)
+
+[node name="Player2" parent="." instance=ExtResource("5_yptyk")]
+position = Vector2(338, -21)

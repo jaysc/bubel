@@ -11,6 +11,9 @@ const BUBBLE_8_ENTITY = preload("res://entities/bubbles/bubble_8.tscn")
 const BUBBLE_9_ENTITY = preload("res://entities/bubbles/bubble_9.tscn")
 const BUBBLE_10_ENTITY = preload("res://entities/bubbles/bubble_10.tscn")
 
+const KILL_MAX_X = 1000
+const KILL_MAX_Y = 500
+
 @export var Speed := 200
 
 ## Size is split into 10 discreet integers
@@ -27,6 +30,7 @@ enum BUBBLE_SIZE {SIZE_1, SIZE_2, SIZE_3}
 var ActiveTime: float = 0
 
 var random = RandomNumberGenerator.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +56,10 @@ func _process(delta: float) -> void:
 		var sinedDirection := modifyBubbleDirection()
 		position += (delta * Speed * sinedDirection)
 	pass
+	
+	if position.x > KILL_MAX_X || position.x < -KILL_MAX_Y || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
+		queue_free()
+		
 	
 func modifyBubbleDirection() -> Vector2:
 	var amp = random.randf_range(0,1)

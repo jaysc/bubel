@@ -16,8 +16,15 @@ var isChargingBubble = false
 var bubbleRoot
 var shootDirection
 
+@export var Stun_Percentage = 0
+@export var Stun_Timer = 0
+
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
+	if Stun_Timer > 0:
+		Stun_Timer -= 1
+		return
+	
 	var input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	var direction = input_vector.normalized()
 	if Input.is_action_just_pressed("Dash"):
@@ -40,6 +47,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func hit(damage: float) -> void:
+	Stun_Percentage = clamp( Stun_Percentage + damage, 0, 300);
+	if Stun_Timer <= 0:
+		Stun_Timer = Stun_Percentage
 
 # Process manages player's Command
 func _process(delta: float) -> void:
