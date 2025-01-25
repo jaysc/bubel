@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dlb0dy81y6sxs"]
+[gd_scene load_steps=16 format=3 uid="uid://dlb0dy81y6sxs"]
 
 [ext_resource type="Script" path="res://scripts/bubble_object.gd" id="1_cd3u7"]
 [ext_resource type="Texture2D" uid="uid://drthk4q88d178" path="res://assets/misc/Bubbles.png" id="1_cr0j4"]
@@ -87,7 +87,6 @@ animations = [{
 [node name="Bubble5" type="Area2D"]
 priority = 1
 script = ExtResource("1_cd3u7")
-SIZE = 5
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hjn18")
