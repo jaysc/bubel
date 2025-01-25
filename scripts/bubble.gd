@@ -18,6 +18,8 @@ const SIZE = 1
 
 @export var Direction:= Vector2(0,0)
 
+var CurrentBubbleObject: Node
+
 enum BUBBLE_SIZE {SIZE_1, SIZE_2, SIZE_3}
 
 # Called when the node enters the scene tree for the first time.
@@ -33,4 +35,5 @@ func _process(delta: float) -> void:
 
 func getSize(size: float) -> void:
 	var newBubble = BUBBLE_8_ENTITY.instantiate()
+	CurrentBubbleObject = newBubble
 	add_child(newBubble)
