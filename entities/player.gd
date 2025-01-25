@@ -49,7 +49,28 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func hit(damage: float) -> void:
+func hit(size: float) -> void:
+	var damage = 0
+	if size < 10:
+		damage = 1;
+	elif size < 20:
+		damage = 2;
+	elif size < 30:
+		damage = 3;
+	elif size < 40:
+		damage = 4;
+	elif size < 50:
+		damage = 5
+	elif size < 60:
+		damage = 6;
+	elif size < 70:
+		damage = 7
+	elif size < 80:
+		damage = 8;
+	elif size < 90:
+		damage = 9
+	else:
+		damage = 10
 	Stun_Percentage = clamp( Stun_Percentage + damage, 0, 300);
 	if Stun_Timer <= 0:
 		Stun_Timer = Stun_Percentage

@@ -13,5 +13,6 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	print('HIT')
-	get_parent().hit(10)
-	pass # Replace with function body.
+	var bubble_size = area.get_parent().get("SIZE")
+	if bubble_size:
+		get_parent().hit(bubble_size)
