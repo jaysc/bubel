@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d128vikrqbbel"]
+[gd_scene load_steps=4 format=3 uid="uid://d128vikrqbbel"]
+
+[ext_resource type="Script" path="res://scripts/goal.gd" id="1_63aoe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va7ls"]
 size = Vector2(100, 720)
@@ -7,6 +9,7 @@ size = Vector2(100, 720)
 size = Vector2(100, 720)
 
 [node name="goal" type="StaticBody2D"]
+script = ExtResource("1_63aoe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_va7ls")
