@@ -11,12 +11,10 @@ var DASH_DURATION = 0.1
 
 
 #Bubble Manager
-#signal shoot(bubble, direction, location)
 const BubbleRoot = preload("res://entities/bubble.tscn")
 var isChargingBubble = false
-
 var bubbleRoot
-
+var shootDirection
 
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
@@ -33,6 +31,8 @@ func _physics_process(delta: float) -> void:
 		target_speed += DASH_SPEED
 
 	if direction != Vector2.ZERO:
+		if isChargingBubble:
+			target_speed = 100
 		var target_velocity = direction * target_speed
 		velocity = velocity.move_toward(target_velocity, ACCELERATION * delta)
 	else:
@@ -50,16 +50,18 @@ func _process(delta: float) -> void:
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
 	if(Input.is_action_just_released("Attack")):
-		#remove_child(bubbleRoot)
-		bubbleRoot.Direction = Vector2(1,0)
-		print(bubbleRoot.Speed)
+		bubbleRoot.Direction = shootDirection
 		bubbleRoot.Shoot()
-		#shoot.emit(bubbleRoot,Vector2(1,0),bubbleRoot.position)
 		isChargingBubble = false
 		bubbleRoot = null
 		
 	
 	if isChargingBubble:
 		bubbleRoot.position = position + Vector2(50,0)
+		var inputVector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+		if inputVector == Vector2.ZERO:
+			shootDirection = Vector2(1,0)
+		else:
+			shootDirection = inputVector
 		#bubbleRoot.SIZE += delta * 100
 		#bubbleRoot.Speed -= delta / 1
