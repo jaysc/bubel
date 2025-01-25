@@ -22,15 +22,26 @@ var CurrentBubbleObject: Node
 
 enum BUBBLE_SIZE {SIZE_1, SIZE_2, SIZE_3}
 
+var ActiveTime: float = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Direction = Vector2(1,1)
+	# createBubbleObject(90) # uncomment to test
+	Direction = Vector2(1, 1)
 	getSize(1)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = position + (delta * Speed * Direction)
+	ActiveTime += delta
+	var sinedDirection := modifyBubbleDirection()
+	position = position + (delta * Speed * sinedDirection)
+	pass
+	
+func modifyBubbleDirection() -> Vector2:
+	const amp: float = 2
+	const freq: float = 5
+	return Vector2(Direction.x, Direction.y + sin(ActiveTime * freq) * amp)
 	pass
 	
 func getSize(size: float) -> PackedScene:
