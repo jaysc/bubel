@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dygq4frdaj3gk"]
+[gd_scene load_steps=4 format=3 uid="uid://cqkgu2yvsvlts"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ncunx"]
 [ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="2_g1p33"]

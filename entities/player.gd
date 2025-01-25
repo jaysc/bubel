@@ -11,7 +11,7 @@ var DASH_DURATION = 0.1
 
 
 #Bubble Manager
-signal shoot(bubble, direction, location)
+#signal shoot(bubble, direction, location)
 const BubbleRoot = preload("res://entities/bubble.tscn")
 var isChargingBubble = false
 

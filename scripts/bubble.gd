@@ -37,11 +37,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if CurrentBubbleObject != getSize(SIZE):
 		createBubbleObject(SIZE)
-	if isShooted:
-		position += Direction * Speed
 	ActiveTime += delta
 	var sinedDirection := modifyBubbleDirection()
 	position = position + (delta * Speed * sinedDirection)
+	if isShooted:
+		position += Direction * Speed
 	pass
 	
 func modifyBubbleDirection() -> Vector2:
