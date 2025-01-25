@@ -11,7 +11,7 @@ const BUBBLE_8_ENTITY = preload("res://entities/bubbles/bubble_8.tscn")
 const BUBBLE_9_ENTITY = preload("res://entities/bubbles/bubble_9.tscn")
 const BUBBLE_10_ENTITY = preload("res://entities/bubbles/bubble_10.tscn")
 
-@export var Speed := 120
+@export var Speed := 200
 
 ## Size is split into 10 discreet integers
 @export var SIZE = 1
@@ -26,11 +26,12 @@ enum BUBBLE_SIZE {SIZE_1, SIZE_2, SIZE_3}
 
 var ActiveTime: float = 0
 
+var random = RandomNumberGenerator.new()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# createBubbleObject(90) # uncomment to test
 	Direction = Vector2(1, 1)
-
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,8 +45,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func modifyBubbleDirection() -> Vector2:
-	const amp: float = 2
-	const freq: float = 5
+	var amp = random.randf_range(0,1)
+	var freq = random.randf_range(4.0,6.0)
 	return Vector2(Direction.x, Direction.y + sin(ActiveTime * freq) * amp)
 	pass
 	
