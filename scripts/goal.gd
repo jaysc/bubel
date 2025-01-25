@@ -2,7 +2,8 @@ extends Area2D
 
 @export var health := 100;
 @export var group: Constants.TeamEnum
-signal goal_finish
+
+signal Damage_taken(new_health: float)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,11 +11,6 @@ func _ready() -> void:
 	var guards = get_tree().get_nodes_in_group(str(group))
 	pass # Replace with function body.
 
-func take_damage(damage: float) -> void:
-	health -= damage
-	
-	if health < 0:
-		goal_finish.emit();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,4 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	print('ENTERED')
+	health -= 10
+	
+	Damage_taken.emit(health)
 	pass # Replace with function body.
