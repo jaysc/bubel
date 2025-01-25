@@ -8,7 +8,7 @@ size = Vector2(100, 720)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_52580"]
 size = Vector2(100, 720)
 
-[node name="goal" type="StaticBody2D"]
+[node name="goal" type="Area2D"]
 script = ExtResource("1_63aoe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,3 +20,5 @@ offset_top = -360.0
 offset_right = 50.0
 offset_bottom = 360.0
 texture = SubResource("PlaceholderTexture2D_52580")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
