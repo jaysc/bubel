@@ -14,9 +14,11 @@ const BUBBLE_10_ENTITY = preload("res://entities/bubbles/bubble_10.tscn")
 @export var Speed := 120
 
 ## Size is split into 10 discreet integers
-const SIZE = 1
+@export var SIZE = 1
 
 @export var Direction:= Vector2(0,0)
+
+var isShooted = false
 
 var CurrentBubbleObject: Node
 
@@ -25,13 +27,14 @@ enum BUBBLE_SIZE {SIZE_1, SIZE_2, SIZE_3}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Direction = Vector2(1,1)
-	getSize(1)
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position = position + (delta * Speed * Direction)
-	pass
+	if CurrentBubbleObject != getSize(SIZE):
+		createBubbleObject(SIZE)
+	if isShooted:
+		position += Direction * Speed
 	
 func getSize(size: float) -> PackedScene:
 	if size <= 10:
@@ -57,6 +60,7 @@ func getSize(size: float) -> PackedScene:
 	
 	return BUBBLE_1_ENTITY
 
+
 func createBubbleObject(size: float) -> void:
 	var newBubble = getSize(size).instantiate()
 	
@@ -65,3 +69,7 @@ func createBubbleObject(size: float) -> void:
 
 	CurrentBubbleObject = newBubble
 	add_child(newBubble)
+
+
+func Shoot() -> void:
+	isShooted = true
