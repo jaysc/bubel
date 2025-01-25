@@ -19,15 +19,21 @@ var shootDirection
 @export var Stun_Percentage = 0
 @export var Stun_Timer = 0
 
+@export var playerID = 0
+var input_vector
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
 	if Stun_Timer > 0:
 		Stun_Timer -= 1
 		return
 	
-	var input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	if playerID == 0:
+		input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	if playerID == 1:
+		input_vector = Input.get_vector("Controller_Left_1","Controller_Right_1","Controller_Up_1","Controller_Down_1")
 	var direction = input_vector.normalized()
-	if Input.is_action_just_pressed("Dash"):
+	var dash = "Dash_" + str(playerID)
+	if Input.is_action_just_pressed(dash):
 		dash_time = DASH_DURATION
 
 	if dash_time > 0:
@@ -54,13 +60,14 @@ func hit(damage: float) -> void:
 
 # Process manages player's Command
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Attack"):
+	var attack = "Attack_" + str(playerID)
+	if Input.is_action_just_pressed(attack):
 		bubbleRoot = BubbleRoot.instantiate()
 		bubbleRoot.position = position
 		get_tree().current_scene.add_child(bubbleRoot)
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
-	if(Input.is_action_just_released("Attack") && bubbleRoot != null):
+	if(Input.is_action_just_released(attack) && bubbleRoot != null):
 		bubbleRoot.Direction = shootDirection
 		bubbleRoot.Shoot()
 		isChargingBubble = false
@@ -73,10 +80,9 @@ func _process(delta: float) -> void:
 	
 	if isChargingBubble:
 		bubbleRoot.position = position + Vector2(50,0)
-		var inputVector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-		if inputVector == Vector2.ZERO:
+		if input_vector == Vector2.ZERO:
 			shootDirection = Vector2(1,0)
 		else:
-			shootDirection = inputVector
+			shootDirection = input_vector
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 100
