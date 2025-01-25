@@ -23,7 +23,6 @@ func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	var direction = input_vector.normalized()
 	if Input.is_action_just_pressed("Dash"):
-
 		dash_time = DASH_DURATION
 
 	if dash_time > 0:
@@ -46,7 +45,8 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Attack"):
 		bubbleRoot = BubbleRoot.instantiate()
-		add_child(bubbleRoot)
+		bubbleRoot.position = position
+		get_tree().current_scene.add_child(bubbleRoot)
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
 	if(Input.is_action_just_released("Attack")):
