@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dhui6gl33rhk0"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_64tm4"]
-[ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
+[ext_resource type="PackedScene" path="res://entities/background.tscn" id="1_t2iiw"]
 [ext_resource type="PackedScene" uid="uid://d128vikrqbbel" path="res://entities/goal.tscn" id="2_1u235"]
 [ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="2_2bg1g"]
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
@@ -28,6 +28,7 @@ position = Vector2(-291, -37)
 
 [node name="Player2" parent="." instance=ExtResource("5_yptyk")]
 position = Vector2(338, -21)
+playerID = 1
 
 [node name="GameManager" type="Control" parent="."]
 layout_mode = 3
