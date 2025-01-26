@@ -31,6 +31,7 @@ func _ready() -> void:
 	#flip player 2
 	if playerID == 1:
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
+		$BubbleBlowaway.position.x = -$BubbleBlowaway.position.x
 
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
