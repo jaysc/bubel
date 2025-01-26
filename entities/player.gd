@@ -24,6 +24,11 @@ signal on_player_stun(stun_percentage: float)
 
 var STOP_TIMER = 0
 
+func _ready() -> void:
+	#flip player 2
+	if playerID == 1:
+		$Sprite2D.flip_h = !$Sprite2D.flip_h
+
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
 	stunBubbleProcess();

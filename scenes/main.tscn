@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=9 format=3 uid="uid://dhui6gl33rhk0"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_64tm4"]
 [ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
 [ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
 [ext_resource type="LabelSettings" uid="uid://bfjn5sg5umxlv" path="res://entities/UI/label_default.tres" id="7_yryhk"]
-[ext_resource type="PackedScene" uid="uid://bq48hetx15k8c" path="res://entities/barrel.tscn" id="8_v3qr4"]
 [ext_resource type="PackedScene" uid="uid://bfe5l84148eob" path="res://entities/barrel_group.tscn" id="9_v4hf5"]
 
 [node name="Main" type="Node2D"]
@@ -119,9 +118,6 @@ label_settings = ExtResource("7_yryhk")
 [node name="Player 2 Stun" type="Label" parent="GameManager/MarginContainer2/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 label_settings = ExtResource("7_yryhk")
-
-[node name="Barrel" parent="." instance=ExtResource("8_v3qr4")]
-position = Vector2(-129, -16)
 
 [node name="BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(594, -213)
