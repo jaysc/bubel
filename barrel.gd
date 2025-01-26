@@ -8,6 +8,7 @@ const MAX_LOOP_AMOUNT = 3
 
 func on_hit(damage: float) -> void:
 	if !is_destroyed:
+		print('barrel hit')
 		health -= damage
 		$AnimatedSprite2D.speed_scale = 1
 		$AnimatedSprite2D.play()
