@@ -15,5 +15,5 @@ func _on_area_entered(area: Area2D) -> void:
 	var bubble_size = area.get_parent().get("SIZE")
 	if bubble_size:
 		get_parent().hit(bubble_size)
-	area.get_parent().destroyBubble()
+		area.get_parent().destroyBubble()
 	
