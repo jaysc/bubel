@@ -26,6 +26,7 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 	
 func destory_barrel() -> void:
 	is_destroyed = true
+	get_parent().on_barrel_destroy()
 	pass
 
 
