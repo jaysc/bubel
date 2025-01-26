@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bchnrlj8hkn31"]
+[gd_scene load_steps=5 format=3 uid="uid://dygq4frdaj3gk"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ncunx"]
 [ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="2_pmxui"]
 [ext_resource type="Script" path="res://scripts/player_collision.gd" id="3_evc1o"]
-[ext_resource type="PackedScene" path="res://entities/bubbles/bubble_stun.tscn" id="4_f6767"]
+[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="4_f6767"]
 
 [node name="Player2" type="CharacterBody2D"]
 script = ExtResource("1_ncunx")

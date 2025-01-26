@@ -4,14 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://ctp32grhppb4q" path="res://assets/characters/CharSlimelordz.png" id="2_vucv2"]
 [ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_mc2wx"]
 [ext_resource type="Script" path="res://scripts/player_collision.gd" id="4_4pm1w"]
-[ext_resource type="PackedScene" path="res://entities/bubbles/bubble_stun.tscn" id="5_16jr8"]
+[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="5_16jr8"]
 [ext_resource type="Script" path="res://scripts/player_rebound_zone.gd" id="6_kfmgo"]
-[ext_resource type="PackedScene" uid="uid://cgmcasrf4st0a" path="res://particles/bubble_blowaway.tscn" id="6_lgts3"]
+[ext_resource type="PackedScene" uid="uid://c8tv5hnyr7alh" path="res://particles/bubble_blowaway.tscn" id="6_lgts3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_emv5l"]
 radius = 70.7452
 
-[node name="Player2" type="CharacterBody2D"]
+[node name="Player4" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 3
 collision_mask = 3
