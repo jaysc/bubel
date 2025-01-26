@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://davg4q616c223"]
+[gd_scene load_steps=6 format=3 uid="uid://davg4q616c223"]
 
 [ext_resource type="Texture2D" uid="uid://2wfqgvvp0x5q" path="res://assets/misc/stage.png" id="1_fpn82"]
+[ext_resource type="Texture2D" uid="uid://c26vyvugeygb4" path="res://assets/misc/frame-bottom.png" id="2_o2krw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0m8"]
 size = Vector2(1280, 100)
@@ -46,3 +47,7 @@ shape = SubResource("RectangleShape2D_ynuse")
 
 [node name="Center" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ch7c3")
+
+[node name="Frame-bottom" type="Sprite2D" parent="."]
+position = Vector2(0, 270)
+texture = ExtResource("2_o2krw")
