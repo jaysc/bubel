@@ -13,8 +13,9 @@ var DASH_DURATION = 0.1
 #Bubble Manager
 const BubbleRoot = preload("res://entities/bubble.tscn")
 var isChargingBubble = false
+var isDefending = false
 var bubbleRoot
-var shootDirection
+var shootDirection: Vector2
 var clampedDirection = 0
 
 @export var Stun_Percentage = 0
@@ -58,16 +59,34 @@ func _physics_process(delta: float) -> void:
 	var target_speed = MAX_SPEED
 	if dash_time > 0:
 		target_speed += DASH_SPEED
-
+		
+	var final_to := Vector2()
+	var final_delta := 0
+	
+	handle_defending()
+	
 	if direction != Vector2.ZERO:
-		if isChargingBubble:
+		# Player is moving a direction
+		if isChargingBubble || isDefending:
 			target_speed = 10
-		var target_velocity = direction * target_speed
-		velocity = velocity.move_toward(target_velocity, ACCELERATION * delta)
+		final_to = direction * target_speed
+		final_delta = ACCELERATION * delta
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, DECELERATION * delta)
+		final_to = Vector2.ZERO
+		final_delta = DECELERATION * delta
+
+	velocity = velocity.move_toward(final_to, final_delta)
 
 	move_and_slide()
+
+func handle_defending() -> void:
+	var defense = "Defense_" + str(playerID)
+	isDefending = Input.is_action_pressed(defense)
+	if isDefending:
+		$BubbleBlowaway.get_node("CPUParticles2D").emitting = true
+		$BubbleBlowaway/CPUParticles2D.direction = clampedDirection
+	else:
+		$BubbleBlowaway.get_node("CPUParticles2D").emitting = false
 
 func hit(size: float) -> void:
 	var damage = 0
@@ -120,14 +139,16 @@ func _process(delta: float) -> void:
 		isChargingBubble = false
 		bubbleRoot = null
 	
+	if input_vector == Vector2.ZERO:
+		shootDirection = Vector2(1,0) if playerID == 0 else Vector2(-1,0)
+	else:
+		shootDirection = input_vector
+		
+	var clampedInputRad =  clamp(shootDirection.angle(),-1,1) if playerID == 0 else clamp(Vector2(-1,0).angle_to(shootDirection),-1,1)
+	clampedDirection = Vector2.RIGHT.rotated(clampedInputRad) if playerID == 0 else Vector2.LEFT.rotated(clampedInputRad)
+
 	if isChargingBubble && bubbleRoot != null:
 		bubbleRoot.position = position + Vector2(50,0)
-		if input_vector == Vector2.ZERO:
-			shootDirection = Vector2(1,0) if playerID == 0 else Vector2(-1,0)
-		else:
-			shootDirection = input_vector
-		var clampedInputRad =  clamp(shootDirection.angle(),-1,1) if playerID == 0 else clamp(Vector2(-1,0).angle_to(shootDirection),-1,1)
-		clampedDirection = Vector2.RIGHT.rotated(clampedInputRad) if playerID == 0 else Vector2.LEFT.rotated(clampedInputRad)
 		bubbleRoot.position = position + clampedDirection * 80
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 1000
