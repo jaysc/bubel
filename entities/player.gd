@@ -58,6 +58,8 @@ func _physics_process(delta: float) -> void:
 			isChargingBubble = false
 			bubbleRoot = null
 		isDefending = false
+		$BubbleBlowaway.get_node("CPUParticles2D").emitting = false
+		
 		return
 	if Attack_Cooldown_Timer > 0:
 		Attack_Cooldown_Timer -= delta

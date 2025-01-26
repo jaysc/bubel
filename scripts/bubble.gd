@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 			var chargingSize = SIZE
 			if (chargingSize >= 100):
 				chargingSize = 100
-			spriteNode.frame = ceil(chargingSize/10)
+			spriteNode.frame = min( ceil(chargingSize/10), 9)
 	ActiveTime += delta
 	if SIZE > 100 && isShooted: #2.pop the bubble
 		destroyBubble()

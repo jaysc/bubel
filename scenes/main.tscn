@@ -37,7 +37,7 @@ playerID = 1
 GameManager = NodePath("../GameManager")
 
 [node name="Player1BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
-position = Vector2(-500, -210)
+position = Vector2(-510, -228)
 
 [node name="GameManager" type="Control" parent="."]
 layout_mode = 3
@@ -125,7 +125,7 @@ layout_mode = 2
 label_settings = ExtResource("7_yryhk")
 
 [node name="BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
-position = Vector2(495, -210)
+position = Vector2(506, -227)
 
 [node name="StartCounter" parent="." node_paths=PackedStringArray("GameManager") instance=ExtResource("9_hfr70")]
 GameManager = NodePath("../GameManager")
