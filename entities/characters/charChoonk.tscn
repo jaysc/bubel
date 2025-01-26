@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="2_52ps3"]
 [ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_kqxgs"]
 [ext_resource type="Script" path="res://scripts/player_collision.gd" id="4_5txpb"]
-[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="5_1icx3"]
+[ext_resource type="PackedScene" path="res://entities/bubbles/bubble_stun.tscn" id="5_1icx3"]
 [ext_resource type="Script" path="res://scripts/player_rebound_zone.gd" id="6_gxda7"]
 [ext_resource type="PackedScene" uid="uid://c8tv5hnyr7alh" path="res://particles/bubble_blowaway.tscn" id="7_jrt6s"]
 

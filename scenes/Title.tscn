@@ -1,13 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://jqsvrxyb06d1"]
+[gd_scene load_steps=11 format=3 uid="uid://jqsvrxyb06d1"]
 
 [ext_resource type="Script" path="res://scripts/title.gd" id="1_roykn"]
+[ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="2_u1ukp"]
+[ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="3_rtbpn"]
+[ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="4_qddyg"]
+[ext_resource type="Texture2D" uid="uid://di4gijyxlfyav" path="res://assets/characters/CharNagainu.png" id="5_klcku"]
+[ext_resource type="Texture2D" uid="uid://3liljjwsg4wu" path="res://assets/characters/CharShirouma.png" id="6_y5aof"]
+[ext_resource type="Texture2D" uid="uid://ctp32grhppb4q" path="res://assets/characters/CharSlimelordz.png" id="7_3hc2o"]
+[ext_resource type="Texture2D" uid="uid://drris56fnb6v0" path="res://assets/misc/title-transparent.png" id="8_xaf0n"]
+
+[sub_resource type="PlaceholderMesh" id="PlaceholderMesh_dkbp7"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_t3uue"]
+mesh = SubResource("PlaceholderMesh_dkbp7")
 
 [node name="Title" type="Node2D"]
 script = ExtResource("1_roykn")
 
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "SceneTransitionTest"
+[node name="Background" parent="." instance=ExtResource("2_u1ukp")]
+position = Vector2(640, 360)
 
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1279.0
+offset_bottom = 719.0
+texture = SubResource("MeshTexture_t3uue")
+
+[node name="Arena" parent="TextureRect" instance=ExtResource("3_rtbpn")]
+position = Vector2(641, 360)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CharChoonk" type="Sprite2D" parent="TextureRect"]
+position = Vector2(308, 231)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_qddyg")
+
+[node name="CharNagainu" type="Sprite2D" parent="TextureRect"]
+position = Vector2(308, 394)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_klcku")
+
+[node name="CharShirouma" type="Sprite2D" parent="TextureRect"]
+position = Vector2(971, 229)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_y5aof")
+flip_h = true
+
+[node name="CharSlimelordz" type="Sprite2D" parent="TextureRect"]
+position = Vector2(970, 396)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_3hc2o")
+flip_h = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(643, 368)
+scale = Vector2(4, 4)
+texture = ExtResource("8_xaf0n")
