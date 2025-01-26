@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c26vyvugeygb4" path="res://assets/misc/frame-bottom.png" id="2_o2krw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0m8"]
-size = Vector2(1280, 100)
+size = Vector2(1280, 104.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynuse"]
 size = Vector2(100, 720)
@@ -15,7 +15,8 @@ size = Vector2(20, 520)
 [node name="Arena" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.32, 1.32)
+position = Vector2(0, -59)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("1_fpn82")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -29,11 +30,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Top" type="CollisionShape2D" parent="."]
-position = Vector2(0, -310)
+position = Vector2(0, -328.5)
 shape = SubResource("RectangleShape2D_lr0m8")
 
 [node name="Bottom" type="CollisionShape2D" parent="."]
-position = Vector2(0, 220)
+position = Vector2(0, 210.25)
 shape = SubResource("RectangleShape2D_lr0m8")
 
 [node name="Left" type="CollisionShape2D" parent="."]
