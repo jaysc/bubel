@@ -8,7 +8,7 @@ extends Control
 
 @export var STOP_TIMER = 0.0
 
-
+@export var Game_Over = false
 
 func _ready() -> void:
 	$"MarginContainer/VBoxContainer/Player 1 Health/Player 1 Health".text = str(Player_1_Goal_Health)
@@ -36,5 +36,9 @@ func _on_player_2_on_player_stun(stun_percentage: float) -> void:
 	$"MarginContainer2/VBoxContainer2/HBoxContainer/Player 2 Stun".text = str(Player_2_Stun_Percentage)
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept") && Game_Over:
+		Game_Over = false
+		get_tree().reload_current_scene()
+		
 	if STOP_TIMER >= 0:
 		STOP_TIMER -= delta

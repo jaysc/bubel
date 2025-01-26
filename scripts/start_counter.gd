@@ -34,3 +34,4 @@ func StartCount() -> void:
 func EndGame() -> void:
 	get_node("Label").text = "GAME OVER"
 	GameManager.STOP_TIMER = 100
+	GameManager.Game_Over = true
