@@ -1,8 +1,9 @@
 extends Node2D
 
 var isCounting = false
-var count = 4
+var count = 4.0
 
+@export var GameManager : Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,3 +27,4 @@ func _process(delta: float) -> void:
 
 func StartCount() -> void:
 	isCounting = true
+	GameManager.STOP_TIMER = count

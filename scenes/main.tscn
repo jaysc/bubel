@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=10 format=3 uid="uid://dhui6gl33rhk0"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_64tm4"]
-[ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
+[ext_resource type="PackedScene" path="res://entities/background.tscn" id="1_t2iiw"]
 [ext_resource type="PackedScene" uid="uid://d128vikrqbbel" path="res://entities/goal.tscn" id="2_1u235"]
 [ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="2_2bg1g"]
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
 [ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
 [ext_resource type="LabelSettings" uid="uid://bfjn5sg5umxlv" path="res://entities/UI/label_default.tres" id="7_yryhk"]
-[ext_resource type="PackedScene" uid="uid://bfe5l84148eob" path="res://entities/barrel_group.tscn" id="9_v4hf5"]
+[ext_resource type="PackedScene" uid="uid://2dl3ratij6er" path="res://entities/StartCounter.tscn" id="9_hfr70"]
+[ext_resource type="PackedScene" path="res://entities/barrel_group.tscn" id="9_v4hf5"]
 
 [node name="Main" type="Node2D"]
 
@@ -26,12 +27,14 @@ collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("4_hr3xq")]
+[node name="Player" parent="." node_paths=PackedStringArray("GameManager") instance=ExtResource("4_hr3xq")]
 position = Vector2(-291, -37)
+GameManager = NodePath("../GameManager")
 
-[node name="Player2" parent="." instance=ExtResource("5_yptyk")]
+[node name="Player2" parent="." node_paths=PackedStringArray("GameManager") instance=ExtResource("5_yptyk")]
 position = Vector2(338, -21)
 playerID = 1
+GameManager = NodePath("../GameManager")
 
 [node name="Player1BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(-631, -249)
@@ -123,6 +126,9 @@ label_settings = ExtResource("7_yryhk")
 
 [node name="BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(594, -213)
+
+[node name="StartCounter" parent="." node_paths=PackedStringArray("GameManager") instance=ExtResource("9_hfr70")]
+GameManager = NodePath("../GameManager")
 
 [connection signal="Damage_taken" from="player1Goal" to="GameManager" method="_on_player_1_goal_damage_taken"]
 [connection signal="Damage_taken" from="player2Goal" to="GameManager" method="_on_player_2_goal_damage_taken"]
