@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+#sprites
+const choonkSprite = preload("res://assets/characters/CharChoonk.png")
+const slimeSprite = preload("res://assets/characters/CharSlimelordz.png")
+const nagainuSprite = preload("res://assets/characters/CharNagainu.png")
+const shiroumaSprite = preload("res://assets/characters/CharShirouma.png")
+const spriteArr = [choonkSprite, slimeSprite, nagainuSprite, shiroumaSprite]
+var spritePointer = 0
 
 #Speed Controller
 var MAX_SPEED = 400
@@ -28,6 +35,7 @@ var STOP_TIMER = 0
 var Attack_Cooldown_Timer: float = 0
 
 func _ready() -> void:
+	spritePointer = playerID
 	#flip player 2
 	if playerID == 1:
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
@@ -52,6 +60,12 @@ func _physics_process(delta: float) -> void:
 	var dash = "Dash_" + str(playerID)
 	if Input.is_action_just_pressed(dash):
 		dash_time = DASH_DURATION
+	var charShuffle = "CharacterShuffle_" + str(playerID)
+	if Input.is_action_just_pressed(charShuffle):
+		spritePointer += 1
+		if spritePointer > 3:
+			spritePointer = 0
+		$Sprite2D.texture = spriteArr[spritePointer]
 
 	if dash_time > 0:
 		dash_time -= delta

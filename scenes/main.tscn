@@ -14,10 +14,10 @@
 [node name="Background" parent="." instance=ExtResource("1_t2iiw")]
 
 [node name="player1Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(-590, 0)
+position = Vector2(-510, 0)
 
 [node name="player2Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(591, 0)
+position = Vector2(510, 0)
 group = 1
 
 [node name="Arena" parent="." instance=ExtResource("2_2bg1g")]
@@ -26,7 +26,7 @@ collision_mask = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Player" parent="." instance=ExtResource("4_hr3xq")]
+[node name="Player1" parent="." instance=ExtResource("4_hr3xq")]
 position = Vector2(-291, -37)
 
 [node name="Player2" parent="." instance=ExtResource("5_yptyk")]
@@ -34,7 +34,7 @@ position = Vector2(338, -21)
 playerID = 1
 
 [node name="Player1BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
-position = Vector2(-631, -249)
+position = Vector2(-500, -210)
 
 [node name="GameManager" type="Control" parent="."]
 layout_mode = 3
@@ -122,9 +122,9 @@ layout_mode = 2
 label_settings = ExtResource("7_yryhk")
 
 [node name="BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
-position = Vector2(594, -213)
+position = Vector2(495, -210)
 
 [connection signal="Damage_taken" from="player1Goal" to="GameManager" method="_on_player_1_goal_damage_taken"]
 [connection signal="Damage_taken" from="player2Goal" to="GameManager" method="_on_player_2_goal_damage_taken"]
-[connection signal="on_player_stun" from="Player" to="GameManager" method="_on_player_on_player_stun"]
+[connection signal="on_player_stun" from="Player1" to="GameManager" method="_on_player_on_player_stun"]
 [connection signal="on_player_stun" from="Player2" to="GameManager" method="_on_player_2_on_player_stun"]

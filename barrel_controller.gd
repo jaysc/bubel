@@ -1,9 +1,9 @@
 extends Node2D
 
-@export var num_of_barrels = 4;
+@export var num_of_barrels = 5;
 
 const BARREL = preload("res://entities/barrel.tscn")
-const BARREL_SEPARATION = 75;
+const BARREL_SEPARATION = 82;
 
 var BARRELS = []
 var Barrel_Alive_Count = num_of_barrels
