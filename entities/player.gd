@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
 
 	if direction != Vector2.ZERO:
 		if isChargingBubble:
-			target_speed = 100
+			target_speed = 10
 		var target_velocity = direction * target_speed
 		velocity = velocity.move_toward(target_velocity, ACCELERATION * delta)
 	else:
@@ -93,6 +93,7 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_released(attack) && bubbleRoot != null):
 		bubbleRoot.Direction = shootDirection
 		bubbleRoot.Shoot()
+		Stun_Timer = 2
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:
@@ -102,10 +103,10 @@ func _process(delta: float) -> void:
 		
 	
 	if isChargingBubble:
-		bubbleRoot.position = position + Vector2(50,0)
 		if input_vector == Vector2.ZERO:
-			shootDirection = Vector2(1,0)
+			shootDirection = Vector2(1,0) if playerID == 0 else Vector2(-1,0)
 		else:
 			shootDirection = input_vector
+		bubbleRoot.position = position + shootDirection.normalized() * 80
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 1000
