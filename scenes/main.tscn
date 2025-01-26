@@ -27,15 +27,9 @@ group = 1
 
 [node name="Player" parent="." instance=ExtResource("4_hr3xq")]
 position = Vector2(-291, -37)
-Stun_Percentage = null
-Stun_Timer = null
-playerID = null
 
 [node name="Player2" parent="." instance=ExtResource("5_yptyk")]
 position = Vector2(338, -21)
-Stun_Percentage = null
-Stun_Timer = null
-playerID = 1
 
 [node name="Player1BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(-631, -249)
