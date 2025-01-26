@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
 [ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
 [ext_resource type="LabelSettings" uid="uid://bfjn5sg5umxlv" path="res://entities/UI/label_default.tres" id="7_yryhk"]
-[ext_resource type="PackedScene" path="res://entities/StartCounter.tscn" id="9_hfr70"]
+[ext_resource type="PackedScene" uid="uid://cl0ra5blb3dn3" path="res://entities/StartCounter.tscn" id="9_hfr70"]
 [ext_resource type="PackedScene" uid="uid://bfe5l84148eob" path="res://entities/barrel_group.tscn" id="9_v4hf5"]
 
 [node name="Main" type="Node2D"]

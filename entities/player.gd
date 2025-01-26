@@ -134,6 +134,8 @@ func hit(size: float) -> void:
 
 # Process manages player's Command
 func _process(delta: float) -> void:
+	if GameManager.STOP_TIMER > 0:
+		return
 	var attack = "Attack_" + str(playerID)
 	if Input.is_action_just_pressed(attack) && Attack_Cooldown_Timer <= 0:
 		bubbleRoot = BubbleRoot.instantiate()

@@ -23,8 +23,14 @@ func _process(delta: float) -> void:
 		if(intCount < 0 ):
 			get_node("Label").text = ""
 			isCounting = false
-
+	#temp way of displaying game over
+	if GameManager.Player_1_Goal_Health <= 0 || GameManager.Player_2_Goal_Health <= 0:
+		EndGame()
 
 func StartCount() -> void:
 	isCounting = true
 	GameManager.STOP_TIMER = count
+
+func EndGame() -> void:
+	get_node("Label").text = "GAME OVER"
+	GameManager.STOP_TIMER = 100
