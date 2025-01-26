@@ -50,6 +50,14 @@ func _physics_process(delta: float) -> void:
 		var amp =5
 		var freq = 1
 		position = Vector2(position.x, position.y + sin(Stun_Timer * freq) * amp)
+		if isChargingBubble:
+			if bubbleRoot != null:
+				bubbleRoot.Direction = clampedDirection
+				bubbleRoot.Shoot()
+				Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
+			isChargingBubble = false
+			bubbleRoot = null
+		isDefending = false
 		return
 	if Attack_Cooldown_Timer > 0:
 		Attack_Cooldown_Timer -= delta
