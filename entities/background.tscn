@@ -4,6 +4,7 @@
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-640, -360)
+color = Color(0.929412, 0.34902, 0.113725, 1)
 polygon = PackedVector2Array(0, 720, 1280, 720, 1280, 0, 0, 0)
 
 [node name="TextureRect" type="TextureRect" parent="."]

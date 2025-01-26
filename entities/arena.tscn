@@ -41,6 +41,7 @@ shape = SubResource("RectangleShape2D_ynuse")
 
 [node name="Right" type="CollisionShape2D" parent="."]
 position = Vector2(510, 0)
+scale = Vector2(1.00132, 1.00182)
 shape = SubResource("RectangleShape2D_ynuse")
 
 [node name="Center" type="CollisionShape2D" parent="."]
