@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfyqcygqqn5l"]
+
+[ext_resource type="Script" path="res://entities/player.gd" id="1_cv346"]
+[ext_resource type="Texture2D" uid="uid://di4gijyxlfyav" path="res://assets/characters/CharNagainu.png" id="2_kwn5g"]
+[ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_d7bgo"]
+[ext_resource type="Script" path="res://scripts/player_collision.gd" id="4_8412c"]
+[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="5_n55mh"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cv346")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("2_kwn5g")
+region_rect = Rect2(-10, -7, 19, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 11)
+shape = ExtResource("3_d7bgo")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("4_8412c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 11)
+shape = ExtResource("3_d7bgo")
+
+[node name="BubbleStun" parent="." instance=ExtResource("5_n55mh")]
+visible = false
+position = Vector2(0, 9)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

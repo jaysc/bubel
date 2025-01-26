@@ -1,18 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://dygq4frdaj3gk"]
+[gd_scene load_steps=5 format=3 uid="uid://dygq4frdaj3gk"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_ncunx"]
-[ext_resource type="Texture2D" uid="uid://clh88h4m602an" path="res://assets/characters/CharChoonk.png" id="2_g1p33"]
+[ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="2_pmxui"]
+[ext_resource type="Script" path="res://scripts/player_collision.gd" id="3_evc1o"]
+[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="4_f6767"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t87km"]
-size = Vector2(127, 128)
-
-[node name="Player" type="CharacterBody2D"]
+[node name="Player2" type="CharacterBody2D"]
 script = ExtResource("1_ncunx")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_g1p33")
-region_rect = Rect2(-10, -7, 19, 20)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_t87km")
+position = Vector2(1, 11)
+shape = ExtResource("2_pmxui")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_evc1o")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 11)
+shape = ExtResource("2_pmxui")
+
+[node name="BubbleStun" parent="." instance=ExtResource("4_f6767")]
+visible = false
+position = Vector2(0, 9)
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
