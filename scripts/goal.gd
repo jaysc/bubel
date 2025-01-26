@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var bubbleSize = area.get_parent().get("SIZE")
 	if bubbleSize != null: 
-		health -= ceil(bubbleSize/10)
+		health -= ceil(bubbleSize/10) * 3
 	
 	Damage_taken.emit(health)
 	pass # Replace with function body.
