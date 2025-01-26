@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://2dl3ratij6er"]
+
+[ext_resource type="Script" path="res://scripts/start_counter.gd" id="1_on8mk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ycqx"]
+font_size = 100
+
+[node name="StartCounter" type="Node2D"]
+script = ExtResource("1_on8mk")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -11.5
+offset_right = 50.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+label_settings = SubResource("LabelSettings_4ycqx")

@@ -6,10 +6,10 @@ func _process(delta: float) -> void:
 		var areas = get_overlapping_areas()
 		if areas:
 			for area in areas:
-				if area.get_parent().get("SIZE"):
+				var bubble_size = area.get_parent().get("SIZE")
+				if bubble_size:
 					var bubble = area.get_parent();
 					var shoot_direction = get_parent().clampedDirection.normalized()
 					
-					bubble.Direction += shoot_direction
-					bubble.Direction = bubble.Direction.normalized()
+					bubble.handle_rebound(shoot_direction)
 					

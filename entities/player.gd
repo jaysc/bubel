@@ -28,17 +28,19 @@ var clampedDirection = 0
 @export var Stun_Percentage = 0
 @export var Stun_Timer = 0
 @export var playerID = 0
-var input_vector
+var input_vector = Vector2(0,0)
 signal on_player_stun(stun_percentage: float)
 
-var STOP_TIMER = 0
 var Attack_Cooldown_Timer: float = 0
+
+@export var GameManager : Node
 
 func _ready() -> void:
 	spritePointer = playerID
 	#flip player 2
 	if playerID == 1:
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
+		$BubbleBlowaway.position.x = -$BubbleBlowaway.position.x
 
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
@@ -48,8 +50,7 @@ func _physics_process(delta: float) -> void:
 		return
 	if Attack_Cooldown_Timer > 0:
 		Attack_Cooldown_Timer -= delta
-	if STOP_TIMER > 0:
-		STOP_TIMER -= 1
+	if GameManager.STOP_TIMER > 0:
 		return
 		
 	if playerID == 0:
@@ -144,7 +145,6 @@ func _process(delta: float) -> void:
 		bubbleRoot.Direction = clampedDirection
 		Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
 		bubbleRoot.Shoot()
-		STOP_TIMER = 2
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:

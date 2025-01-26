@@ -53,10 +53,22 @@ func _process(delta: float) -> void:
 	if isShooted:
 		var sinedDirection := modifyBubbleDirection()
 		position += (delta * Speed * sinedDirection)
-	pass
 	
 	if position.x > KILL_MAX_X || position.x < -KILL_MAX_X || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
 		destroyBubble()
+		
+func handle_rebound(rebound_direction: Vector2):
+	var current_vector = Speed * Direction
+	var rebound_strength = 1
+	if SIZE < 3:
+		rebound_strength = (1/SIZE) * 50
+	elif SIZE < 5:
+		rebound_strength = (1/SIZE) * 100
+	else:
+		rebound_strength = (1/SIZE) * 200
+	var new_vector = current_vector + (rebound_direction * rebound_strength)
+	Direction = new_vector.normalized()
+	Speed = new_vector.length()
 	
 func modifyBubbleDirection() -> Vector2:
 	var amp = random.randf_range(0,1)
