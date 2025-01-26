@@ -22,13 +22,19 @@ var shootDirection
 var input_vector
 signal on_player_stun(stun_percentage: float)
 
+var STOP_TIMER = 0
+
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
 	stunBubbleProcess();
 	if Stun_Timer > 0:
 		Stun_Timer -= 1
 		return
-	
+		
+	if STOP_TIMER > 0:
+		STOP_TIMER -= 1
+		return
+		
 	if playerID == 0:
 		input_vector = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	if playerID == 1:
@@ -96,7 +102,7 @@ func _process(delta: float) -> void:
 	if(Input.is_action_just_released(attack) && bubbleRoot != null):
 		bubbleRoot.Direction = shootDirection
 		bubbleRoot.Shoot()
-		Stun_Timer = 2
+		STOP_TIMER = 2
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:
