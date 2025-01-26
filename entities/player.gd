@@ -24,6 +24,7 @@ var input_vector
 signal on_player_stun(stun_percentage: float)
 
 var STOP_TIMER = 0
+var Attack_Cooldown_Timer: float = 0
 
 func _ready() -> void:
 	#flip player 2
@@ -36,7 +37,8 @@ func _physics_process(delta: float) -> void:
 	if Stun_Timer > 0:
 		Stun_Timer -= 1
 		return
-		
+	if Attack_Cooldown_Timer > 0:
+		Attack_Cooldown_Timer -= delta
 	if STOP_TIMER > 0:
 		STOP_TIMER -= 1
 		return
@@ -99,19 +101,21 @@ func hit(size: float) -> void:
 # Process manages player's Command
 func _process(delta: float) -> void:
 	var attack = "Attack_" + str(playerID)
-	if Input.is_action_just_pressed(attack):
+	if Input.is_action_just_pressed(attack) && Attack_Cooldown_Timer <= 0:
 		bubbleRoot = BubbleRoot.instantiate()
 		bubbleRoot.position = position
 		get_tree().current_scene.add_child(bubbleRoot)
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
-	if(Input.is_action_just_released(attack) && bubbleRoot != null):
+	if(Input.is_action_just_released(attack) && bubbleRoot != null && Attack_Cooldown_Timer <= 0):
 		bubbleRoot.Direction = clampedDirection
+		Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
 		bubbleRoot.Shoot()
 		STOP_TIMER = 2
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:
+		Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
 		bubbleRoot.Direction = clampedDirection
 		isChargingBubble = false
 		bubbleRoot = null
@@ -132,6 +136,7 @@ func stunBubbleProcess() -> void:
 	var stunBubble = get_node("BubbleStun")
 	var collider = get_node("Area2D")
 	if Stun_Timer > 0 && !stunBubble.visible:
+		Attack_Cooldown_Timer = 100
 		set_collision_layer_value(1, false)
 		set_collision_mask_value(1, false)
 		collider.set_collision_layer_value(1, false)
@@ -139,6 +144,7 @@ func stunBubbleProcess() -> void:
 		stunBubble.visible = true
 	if Stun_Timer <= 0 && stunBubble.visible:
 		stunBubble.visible = false
+		Attack_Cooldown_Timer = 0
 		await get_tree().create_timer(1).timeout #invincible time
 		set_collision_layer_value(1, true)
 		set_collision_mask_value(1, true)
