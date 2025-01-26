@@ -110,7 +110,9 @@ func _process(delta: float) -> void:
 			shootDirection = Vector2(1,0) if playerID == 0 else Vector2(-1,0)
 		else:
 			shootDirection = input_vector
-		bubbleRoot.position = position + shootDirection.normalized() * 80
+		var clampedInputRad =  clamp(shootDirection.angle(),-1,1) if playerID == 0 else clamp(Vector2(-1,0).angle_to(shootDirection),-1,1)
+		var clampedDirection = Vector2.RIGHT.rotated(clampedInputRad) if playerID == 0 else Vector2.LEFT.rotated(clampedInputRad)
+		bubbleRoot.position = position + clampedDirection * 80
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 1000
 
