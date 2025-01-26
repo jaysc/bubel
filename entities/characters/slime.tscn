@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0vsw10meym28"]
+[gd_scene load_steps=6 format=3 uid="uid://b0vsw10meym28"]
 
 [ext_resource type="Script" path="res://entities/player.gd" id="1_j1hbl"]
 [ext_resource type="Texture2D" uid="uid://ctp32grhppb4q" path="res://assets/characters/CharSlimelordz.png" id="2_vucv2"]
 [ext_resource type="Shape2D" uid="uid://cq623nyojh6u3" path="res://entities/characters/PlayerCollision.tres" id="3_mc2wx"]
 [ext_resource type="Script" path="res://scripts/player_collision.gd" id="4_4pm1w"]
+[ext_resource type="PackedScene" uid="uid://d2mfyd1ni876o" path="res://entities/bubbles/bubble_stun.tscn" id="5_16jr8"]
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -24,5 +25,8 @@ script = ExtResource("4_4pm1w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 11)
 shape = ExtResource("3_mc2wx")
+
+[node name="BubbleStun" parent="." instance=ExtResource("5_16jr8")]
+visible = false
 
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

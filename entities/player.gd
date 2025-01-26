@@ -24,6 +24,7 @@ signal on_player_stun(stun_percentage: float)
 
 # PhysicsProcess manages player's speed
 func _physics_process(delta: float) -> void:
+	stunBubbleProcess();
 	if Stun_Timer > 0:
 		Stun_Timer -= 1
 		return
@@ -78,7 +79,9 @@ func hit(size: float) -> void:
 		damage = 10
 	Stun_Percentage = clamp( Stun_Percentage + damage, 0, 300);
 	if Stun_Timer <= 0:
-		Stun_Timer = Stun_Percentage
+		if damage > 1:
+			damage = damage / 2
+		Stun_Timer = damage * Stun_Percentage
 	on_player_stun.emit(Stun_Percentage)
 
 # Process manages player's Command
@@ -99,9 +102,8 @@ func _process(delta: float) -> void:
 		bubbleRoot.Direction = shootDirection
 		isChargingBubble = false
 		bubbleRoot = null
-		
 	
-	if isChargingBubble:
+	if isChargingBubble && bubbleRoot != null:
 		bubbleRoot.position = position + Vector2(50,0)
 		if input_vector == Vector2.ZERO:
 			shootDirection = Vector2(1,0)
@@ -109,3 +111,21 @@ func _process(delta: float) -> void:
 			shootDirection = input_vector
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 1000
+
+func stunBubbleProcess() -> void:
+	var stunBubble = get_node("BubbleStun")
+	var collider = get_node("Area2D")
+	if Stun_Timer > 0 && !stunBubble.visible:
+		set_collision_layer_value(1, false)
+		set_collision_mask_value(1, false)
+		collider.set_collision_layer_value(1, false)
+		collider.set_collision_mask_value(1, false)
+		stunBubble.visible = true
+	if Stun_Timer <= 0 && stunBubble.visible:
+		set_collision_layer_value(1, true)
+		set_collision_mask_value(1, true)
+		collider.set_collision_layer_value(1, true)
+		collider.set_collision_mask_value(1, true)
+		stunBubble.visible = false
+		
+	

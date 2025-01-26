@@ -5,6 +5,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="BubblePop" type="Node2D"]
+scale = Vector2(1.5, 1.5)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false

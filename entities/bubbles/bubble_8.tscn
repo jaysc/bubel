@@ -89,12 +89,14 @@ radius = 17.0
 script = ExtResource("1_uonti")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_hjn18")
 animation = &"bubbles"
 frame = 7
 speed_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_46y1b")
 
 [node name="BubblePop" parent="." instance=ExtResource("2_y28eg")]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2mfyd1ni876o"]
+
+[ext_resource type="Texture2D" uid="uid://bqdfv3kcxn6c3" path="res://assets/characters/BubbleStun.png" id="1_vlmc5"]
+[ext_resource type="PackedScene" uid="uid://1xdtpgp7jtnp" path="res://particles/bubble_pop.tscn" id="2_3m5ua"]
+
+[node name="BubbleStun" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vlmc5")
+
+[node name="BubblePop" parent="." instance=ExtResource("2_3m5ua")]

@@ -55,9 +55,8 @@ func _process(delta: float) -> void:
 		position += (delta * Speed * sinedDirection)
 	pass
 	
-	if position.x > KILL_MAX_X || position.x < -KILL_MAX_Y || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
+	if position.x > KILL_MAX_X || position.x < -KILL_MAX_X || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
 		destroyBubble()
-		
 	
 func modifyBubbleDirection() -> Vector2:
 	var amp = random.randf_range(0,1)
