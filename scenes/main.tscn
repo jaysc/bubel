@@ -30,6 +30,7 @@ position = Vector2(-291, -37)
 
 [node name="Player2" parent="." instance=ExtResource("5_yptyk")]
 position = Vector2(338, -21)
+playerID = 1
 
 [node name="Player1BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(-631, -249)
