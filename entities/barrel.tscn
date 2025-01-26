@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq48hetx15k8c"]
+
+[ext_resource type="Texture2D" uid="uid://da5eqmagutmq2" path="res://assets/misc/barrel.png" id="1_bnues"]
+[ext_resource type="Script" path="res://barrel.gd" id="1_epdb3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i0gb"]
+atlas = ExtResource("1_bnues")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfpjy"]
+atlas = ExtResource("1_bnues")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ywck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i0gb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfpjy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Barrel" type="Node2D"]
+script = ExtResource("1_epdb3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6ywck")
+frame_progress = 0.382812
+speed_scale = 0.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
