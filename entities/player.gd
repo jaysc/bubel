@@ -15,6 +15,7 @@ const BubbleRoot = preload("res://entities/bubble.tscn")
 var isChargingBubble = false
 var bubbleRoot
 var shootDirection
+var clampedDirection = 0
 
 @export var Stun_Percentage = 0
 @export var Stun_Timer = 0
@@ -105,13 +106,13 @@ func _process(delta: float) -> void:
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
 	if(Input.is_action_just_released(attack) && bubbleRoot != null):
-		bubbleRoot.Direction = shootDirection
+		bubbleRoot.Direction = clampedDirection
 		bubbleRoot.Shoot()
 		STOP_TIMER = 2
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:
-		bubbleRoot.Direction = shootDirection
+		bubbleRoot.Direction = clampedDirection
 		isChargingBubble = false
 		bubbleRoot = null
 	
@@ -122,7 +123,7 @@ func _process(delta: float) -> void:
 		else:
 			shootDirection = input_vector
 		var clampedInputRad =  clamp(shootDirection.angle(),-1,1) if playerID == 0 else clamp(Vector2(-1,0).angle_to(shootDirection),-1,1)
-		var clampedDirection = Vector2.RIGHT.rotated(clampedInputRad) if playerID == 0 else Vector2.LEFT.rotated(clampedInputRad)
+		clampedDirection = Vector2.RIGHT.rotated(clampedInputRad) if playerID == 0 else Vector2.LEFT.rotated(clampedInputRad)
 		bubbleRoot.position = position + clampedDirection * 80
 		bubbleRoot.SIZE += delta * 50
 		bubbleRoot.Speed -= delta / 1000
