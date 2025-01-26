@@ -23,7 +23,7 @@ var isChargingBubble = false
 var isDefending = false
 var bubbleRoot
 var shootDirection: Vector2
-var clampedDirection = 0
+var clampedDirection : Vector2
 
 @export var Stun_Percentage = 0
 @export var Stun_Timer = 0
@@ -143,10 +143,12 @@ func _process(delta: float) -> void:
 		get_tree().current_scene.add_child(bubbleRoot)
 		bubbleRoot.createBubbleObject(1)
 		isChargingBubble = true
-	if(Input.is_action_just_released(attack) && bubbleRoot != null && Attack_Cooldown_Timer <= 0):
-		bubbleRoot.Direction = clampedDirection
-		Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
-		bubbleRoot.Shoot()
+		Attack_Cooldown_Timer = 0.0
+	if(Input.is_action_just_released(attack)  && Attack_Cooldown_Timer <= 0):
+		if bubbleRoot != null:
+			bubbleRoot.Direction = clampedDirection
+			bubbleRoot.Shoot()
+			Attack_Cooldown_Timer = 0.5 - min(bubbleRoot.SIZE/100, 1)
 		isChargingBubble = false
 		bubbleRoot = null
 	if bubbleRoot != null && bubbleRoot.isShooted:

@@ -31,6 +31,7 @@ var ActiveTime: float = 0
 
 var random = RandomNumberGenerator.new()
 
+var Can_Rebound := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -57,7 +58,10 @@ func _process(delta: float) -> void:
 	if position.x > KILL_MAX_X || position.x < -KILL_MAX_X || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
 		destroyBubble()
 		
-func handle_rebound(rebound_direction: Vector2):
+func handle_rebound(rebound_direction: Vector2) -> void:
+	if !Can_Rebound:
+		return;
+
 	var current_vector = Speed * Direction
 	var rebound_strength = 1
 	if SIZE < 3:
@@ -112,6 +116,11 @@ func createBubbleObject(size: float) -> void:
 
 func Shoot() -> void:
 	isShooted = true
+	print('rebound')
+	get_tree().create_timer(1).connect("timeout", set_rebound)
+	
+func set_rebound() -> void:
+	Can_Rebound = true
 
 func destroyBubble() -> void:
 	get_child(0).get_node("BubblePop").get_node("CPUParticles2D").emitting = true
