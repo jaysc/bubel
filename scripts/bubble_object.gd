@@ -18,5 +18,7 @@ func _on_area_entered(area: Area2D) -> void:
 			print('bubble hit size')
 			get_parent().queue_free()
 		else:
+			print('bubble hit shrink')
+			get_parent().createBubbleObject(get_parent().get("SIZE") - target_bubble_size)
 			pass
 			#handle shrink
