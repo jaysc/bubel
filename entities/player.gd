@@ -138,10 +138,10 @@ func stunBubbleProcess() -> void:
 		collider.set_collision_mask_value(1, false)
 		stunBubble.visible = true
 	if Stun_Timer <= 0 && stunBubble.visible:
+		stunBubble.visible = false
+		await get_tree().create_timer(1).timeout #invincible time
 		set_collision_layer_value(1, true)
 		set_collision_mask_value(1, true)
 		collider.set_collision_layer_value(1, true)
 		collider.set_collision_mask_value(1, true)
-		stunBubble.visible = false
-		
 	
