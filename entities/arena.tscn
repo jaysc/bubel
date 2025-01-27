@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://davg4q616c223"]
+[gd_scene load_steps=9 format=3 uid="uid://davg4q616c223"]
 
 [ext_resource type="Texture2D" uid="uid://2wfqgvvp0x5q" path="res://assets/misc/stage.png" id="1_fpn82"]
+[ext_resource type="Texture2D" uid="uid://c26vyvugeygb4" path="res://assets/misc/frame-bottom.png" id="2_o2krw"]
 [ext_resource type="Script" path="res://entities/top_blow_down.gd" id="2_sqw6n"]
 [ext_resource type="Script" path="res://entities/bottom_blow_up.gd" id="3_7cgo6"]
-[ext_resource type="Texture2D" uid="uid://c26vyvugeygb4" path="res://assets/misc/frame-bottom.png" id="2_o2krw"]
+[ext_resource type="Texture2D" uid="uid://brmn06s6ff8ep" path="res://assets/misc/frame-top.png" id="5_kiwn1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lr0m8"]
 size = Vector2(1280, 104.5)
@@ -70,8 +71,13 @@ scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_lr0m8")
 debug_color = Color(0.825513, 0.00159775, 0.954888, 0.42)
 
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
-[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]
 [node name="Frame-bottom" type="Sprite2D" parent="."]
 position = Vector2(0, 270)
 texture = ExtResource("2_o2krw")
+
+[node name="Frame-top" type="Sprite2D" parent="."]
+position = Vector2(0, -344)
+texture = ExtResource("5_kiwn1")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="Area2D2" method="_on_area_entered"]

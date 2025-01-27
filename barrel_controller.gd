@@ -4,9 +4,12 @@ extends Node2D
 
 const BARREL = preload("res://entities/barrel.tscn")
 const BARREL_SEPARATION = 85;
+var Health = 100;
 
 var BARRELS = []
 var Barrel_Alive_Count = num_of_barrels
+
+signal barrel_group_hit(health: float)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,4 +20,8 @@ func _ready() -> void:
 		add_child(barrel)
 		
 func on_barrel_destroy() -> void:
-	Barrel_Alive_Count -= 1
+	pass
+		
+func on_barrel_hit(damage: float) -> void:
+	Health -= damage
+	barrel_group_hit.emit(Health)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dhui6gl33rhk0"]
+[gd_scene load_steps=9 format=3 uid="uid://dhui6gl33rhk0"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_64tm4"]
 [ext_resource type="PackedScene" uid="uid://dng7607uqdfv7" path="res://entities/background.tscn" id="1_t2iiw"]
-[ext_resource type="PackedScene" uid="uid://d128vikrqbbel" path="res://entities/goal.tscn" id="2_1u235"]
 [ext_resource type="PackedScene" uid="uid://davg4q616c223" path="res://entities/arena.tscn" id="2_2bg1g"]
 [ext_resource type="PackedScene" uid="uid://chabsxkyhnda5" path="res://entities/characters/charChoonk.tscn" id="4_hr3xq"]
 [ext_resource type="PackedScene" uid="uid://b0vsw10meym28" path="res://entities/characters/slime.tscn" id="5_yptyk"]
@@ -13,13 +12,6 @@
 [node name="Main" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("1_t2iiw")]
-
-[node name="player1Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(-510, -56)
-
-[node name="player2Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(510, -56)
-group = 1
 
 [node name="Arena" parent="." instance=ExtResource("2_2bg1g")]
 collision_layer = 3
@@ -124,13 +116,13 @@ label_settings = ExtResource("7_yryhk")
 layout_mode = 2
 label_settings = ExtResource("7_yryhk")
 
-[node name="BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
+[node name="Player2BarrelGroup" parent="." instance=ExtResource("9_v4hf5")]
 position = Vector2(506, -227)
 
 [node name="StartCounter" parent="." node_paths=PackedStringArray("GameManager") instance=ExtResource("9_hfr70")]
 GameManager = NodePath("../GameManager")
 
-[connection signal="Damage_taken" from="player1Goal" to="GameManager" method="_on_player_1_goal_damage_taken"]
-[connection signal="Damage_taken" from="player2Goal" to="GameManager" method="_on_player_2_goal_damage_taken"]
 [connection signal="on_player_stun" from="Player" to="GameManager" method="_on_player_on_player_stun"]
 [connection signal="on_player_stun" from="Player2" to="GameManager" method="_on_player_2_on_player_stun"]
+[connection signal="barrel_group_hit" from="Player1BarrelGroup" to="GameManager" method="_on_player_1_barrel_group_barrel_group_hit"]
+[connection signal="barrel_group_hit" from="Player2BarrelGroup" to="GameManager" method="_on_player_2_barrel_group_barrel_group_hit"]

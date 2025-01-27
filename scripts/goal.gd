@@ -24,3 +24,7 @@ func _on_area_entered(area: Area2D) -> void:
 	
 	Damage_taken.emit(health)
 	pass # Replace with function body.
+
+
+func _on_player_on_player_stun(stun_percentage: float) -> void:
+	pass # Replace with function body.
