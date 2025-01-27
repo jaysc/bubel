@@ -15,10 +15,10 @@
 [node name="Background" parent="." instance=ExtResource("1_t2iiw")]
 
 [node name="player1Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(-510, 0)
+position = Vector2(-510, -56)
 
 [node name="player2Goal" parent="." instance=ExtResource("2_1u235")]
-position = Vector2(510, 0)
+position = Vector2(510, -56)
 group = 1
 
 [node name="Arena" parent="." instance=ExtResource("2_2bg1g")]
@@ -132,4 +132,5 @@ GameManager = NodePath("../GameManager")
 
 [connection signal="Damage_taken" from="player1Goal" to="GameManager" method="_on_player_1_goal_damage_taken"]
 [connection signal="Damage_taken" from="player2Goal" to="GameManager" method="_on_player_2_goal_damage_taken"]
+[connection signal="on_player_stun" from="Player" to="GameManager" method="_on_player_on_player_stun"]
 [connection signal="on_player_stun" from="Player2" to="GameManager" method="_on_player_2_on_player_stun"]
