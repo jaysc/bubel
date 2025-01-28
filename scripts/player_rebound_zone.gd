@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 					var bubble = area.get_parent();
 					var shoot_direction = get_parent().clampedDirection.normalized()
 					
-					bubble.handle_rebound(shoot_direction)
+					bubble.handle_rebound(shoot_direction, delta)
 					

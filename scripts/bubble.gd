@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 	if position.x > KILL_MAX_X || position.x < -KILL_MAX_X || position.y > KILL_MAX_Y || position.y < -KILL_MAX_Y:
 		destroyBubble()
 		
-func handle_rebound(rebound_direction: Vector2) -> void:
+func handle_rebound(rebound_direction: Vector2, delta: float) -> void:
 	if !Can_Rebound:
 		return;
 
@@ -70,7 +70,7 @@ func handle_rebound(rebound_direction: Vector2) -> void:
 		rebound_strength = (1/SIZE) * 100
 	else:
 		rebound_strength = (1/SIZE) * 200
-	var new_vector = current_vector + (rebound_direction * rebound_strength)
+	var new_vector = current_vector + (rebound_direction * rebound_strength) * (delta * 100)
 	Direction = new_vector.normalized()
 	Speed = new_vector.length()
 	
